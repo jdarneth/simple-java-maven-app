@@ -19,6 +19,7 @@ pipeline {
                 sh 'mvn -B -Dspotbugs.skip=true -DskipTests=true clean package' 
             }
         }
+        /*
         stage('Deliver') {
             steps {
                 sh '''
@@ -49,6 +50,7 @@ pipeline {
                 '''
             }
         }
+        */
     }
 }
 
