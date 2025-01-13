@@ -7,9 +7,7 @@ pipeline {
           steps {
             git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
             withMaven {
-              options: [
-                  findbugsPublisher(disabled: true)
-              ]
+              findbugsPublisher(disabled: true)
               sh "mvn clean verify"
             } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
           }
