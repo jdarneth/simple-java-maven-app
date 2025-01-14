@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                 writeFile(file: "src/main/resources/role-id", text: "$ROLE_ID")
-                dir("/var/jenkins_home/workspace/test5") {
+                dir("/var/jenkins_home/workspace/test") {
                 sh 'mvn -B -DskipTests clean package'
                 }
             }
