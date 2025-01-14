@@ -5,7 +5,7 @@ pipeline {
         jdk "jdk"
     }
     environment {
-        ROLE_ID = credentials('role-id')
+        ROLE_ID = credentials("role-id")
     }
     
     stages {
