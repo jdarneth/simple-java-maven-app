@@ -5,13 +5,13 @@ pipeline {
           steps {
             git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
             withMaven {
-              sh "mvn -Dspotbugs.skip=true -DskipTests=true clean verify"
+              sh "mvn -Dspotbugs.skip=true -Dsurefire.skip=true -DskipTests=true clean verify"
             } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
           }
         }
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -Dsurefire.skip=true -DskipTests clean package'
             }
         }
         stage('Test') {
