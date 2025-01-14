@@ -1,11 +1,13 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.0'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
     stages {
+        stage("Install") {
+          steps {
+            git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
+            withMaven {
+              sh "mvn -Dspotbugs.skip=true -DskipTests=true clean verify"
+            } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
+          }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
