@@ -4,6 +4,10 @@ pipeline {
         maven "maven"
         jdk "jdk"
     }
+    environment {
+        ROLE_ID = ('role-id')
+    }
+    
     stages {
         stage('Initialize'){
             steps{
@@ -13,6 +17,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                writeFile(file: "src/main/resources/role-id", text: "$ROLE_ID")
                 dir("/var/jenkins_home/workspace/test5") {
                 sh 'mvn -B -DskipTests clean package'
                 }
